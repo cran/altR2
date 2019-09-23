@@ -1,0 +1,8 @@
+13af2ce1cc51a310f3fa106c59592a17 *DESCRIPTION
+88a37eb3d312f009adccf1fce7d459c8 *NAMESPACE
+54527ce044b9ffd736b606292cde036b *R/altR2.R
+b35cf0066341c7b658760b668e30c7fc *man/altR2.Rd
+fcee3de8d2d325c3a971d5b1a017e3d8 *tests/testthat.R
+5ea6ff7233afa03a147cc285c2879371 *tests/testthat/setup-main.R
+ee32cfb822e651283e95e291bc32e803 *tests/testthat/test-main.R
+121c11b22531b77c5a1aa50047a3819a *tests/testthat/test-wrongInputs.R
