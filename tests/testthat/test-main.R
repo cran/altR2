@@ -1,3 +1,4 @@
+library(MASS)
 OP2EstimatorManual <- function(Rsquared,N,p,k){
   factor1 <- (N-3)/(N-p-1)*(1-Rsquared)
   factor2 <- 1+2*(1-Rsquared)/(N-p+1)+8*(1-Rsquared)^2/((N-p+1)*(N-p+3))
@@ -38,7 +39,6 @@ test_that("Maximum likelihood sanity",{
 test_that("Positive and nonpositive are the same",{
   normalEstimators <- setdiff(names(normalRes)[!grepl("*_Positive",names(normalRes))],c("Maximum_Likelihood","Rsquared"))
   for (estimator in normalEstimators){
-    print(estimator)
     expect_equivalent(normalRes[estimator],normalRes[paste0(estimator,"_Positive")])
   }
 })
@@ -113,3 +113,16 @@ test_that("new Estimator more elaborate",{
     expect_equivalent(OPExactEstimatorJul(rsquared,N,p),OPExactEstimator(rsquared,N,p),tolerance=10^-5)
   }
 })
+
+test_that("Ml Estimator bound", {
+  normal <- altR2:::mlEstimator(0.5, 100, 2, FALSE)
+  bounded <- altR2:::mlEstimator(0.5, 100, 2, TRUE)
+  expect_equivalent(normal, bounded)
+})
+
+test_that("estimate_adj_R2", {
+  test <- estimate_adj_R2(summary(x)$r.squared, nrow(testData), ncol(testData) - 1)
+  expect_identical(test, normalRes)
+})
+
+
